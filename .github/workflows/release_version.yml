@@ -1,0 +1,26 @@
+name: Release Version
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - name: Build the project
+        run: dotnet build
+      - name: Create NuGet package
+        run: dotnet pack --configuration Release
+      - name: Publish release in GitHub Releases
+        uses: ghcr.io/softprops/action-gh-release@v1
+        with:
+          files: ./bin/Release/*.nupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
