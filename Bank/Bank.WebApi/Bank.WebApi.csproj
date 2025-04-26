@@ -5,6 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>true</IsPackable>
+    <PackageId>Bank.WebApi</PackageId> 
+    <Version>1.0.0</Version> 
+    <Authors>John Doe</Authors>
+    <Company>UPT</Company> 
+    <Description>Sample web api app</Description> 
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> 
   </PropertyGroup>
 
   <ItemGroup>
