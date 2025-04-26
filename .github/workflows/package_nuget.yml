@@ -18,13 +18,13 @@ jobs:
         run: cd Bank && dotnet restore
       - name: Run unit tests
         run: cd Bank && dotnet test --collect:"XPlat Code Coverage"
-      - name: Analyze with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v1
-        with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+      #- name: Analyze with SonarCloud
+      #  uses: sonarsource/sonarcloud-github-action@v1
+      #  with:
+      #    sonar-token: ${{ secrets.SONAR_TOKEN }}
       - name: Build the project
-        run: dotnet build
+        run: cd Bank && dotnet build
       - name: Create NuGet package
-        run: dotnet pack --configuration Release
+        run: cd Bank && dotnet pack --configuration Release
       - name: Publish NuGet package to GitHub Packages
-        run: dotnet nuget push ./bin/Release/*.nupkg --source "GitHub" --api-key ${{ secrets.GITHUB_TOKEN }}
+        run: cd Bank && dotnet nuget push ./bin/Release/*.nupkg --source "GitHub" --api-key ${{ secrets.GITHUB_TOKEN }}
