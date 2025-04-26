@@ -15,9 +15,9 @@ jobs:
         with:
           dotnet-version: '8.x'
       - name: Restore dependencies
-        run: dotnet restore
+        run: cd Bank && dotnet restore
       - name: Run unit tests
-        run: dotnet test --collect:"XPlat Code Coverage"
+        run: cd Bank && dotnet test --collect:"XPlat Code Coverage"
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1
         with:
